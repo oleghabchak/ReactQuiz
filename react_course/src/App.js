@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Counter from './components/Counter';
+import {Route ,BrowserRouter,  Routes} from 'react-router-dom'
 import './styles/App.css';
-import ClassCounter from './components/ClassCounter';
+
 // import PostItem from './components/PostItem';
 import PostList from './components/PostList';
 
@@ -14,7 +14,14 @@ function App() {
    
   return (
     <>
-    
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' exact element={<Homepage/>}/>
+        <Route path='/prodactview' exact element={<Homepage/>}/>
+      </Routes>
+    </BrowserRouter>
+
+
     <PostList posts={posts} title={'List=1'}/>
     <Counter/>
     <ClassCounter/>
