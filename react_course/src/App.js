@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
-import {Route ,BrowserRouter,  Routes} from 'react-router-dom'
-import './styles/App.css';
-
-// import PostItem from './components/PostItem';
+import './App.css';
 import PostList from './components/PostList';
+import PostForm from './components/PostForm';
 
 function App() {
     const [posts, setPosts] = useState([
-      {id: 1, title: 'oleg 1', body:'erf4'},
-      {id: 2, title: 'oleg 2', body:'3sdeh4'},
-      {id: 3, title: 'oleg 3', body:'2ert4'}
+      { id: 1, 
+        title: 'BMW', 
+        body:'(Баварські моторні заводи) — німецький автобудівний та авіамоторний концерн і однойменна торгова марка автомобілів преміум- та люкс-класу і мотоциклів.'},
+      { id: 2, 
+        title: 'Volkswagen', 
+        body:'Створена в 1930-х роках ХХ ст. як автобудівник для «простого народу». Протягом своєї історії завдяки політиці керівництва, надійності та якості компанія стала світовим і європейським лідером в галузі масового автомобілебудування.'},
+      { id: 3, 
+        title: 'Audi', 
+        body:"Audi представляють одну з чотирьох автомобільних компаній, які об'єдналися для створення попередника Audi — Auto Union. Гасло Audi — «Vorsprung durch Technik», що означає «Прогрес через технології»."}
     ])
-   
+
+    const createPost = (newPost) => {
+      setPosts([...posts,newPost])
+    }
+
+    const removePost = (post) => {
+      setPosts(posts.filter(p => p.id !== post.id))
+    }
+    
   return (
-    <>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' exact element={<Homepage/>}/>
-        <Route path='/prodactview' exact element={<Homepage/>}/>
-      </Routes>
-    </BrowserRouter>
-
-
-    <PostList posts={posts} title={'List=1'}/>
-    <Counter/>
-    <ClassCounter/>
-    </>
+    <div className='App'>
+     <PostForm create={createPost}/>
+     <PostList remove={removePost}  posts={posts} title={'Список товарів'}/>
+    </div>
   );
 }
 
