@@ -1,2 +1,2 @@
 # Test task 
-just start new project
+just started new project
